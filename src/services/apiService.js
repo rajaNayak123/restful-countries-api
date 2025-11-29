@@ -4,6 +4,11 @@ let cachedData = null;
 const fetchCountries = () => {
     return new Promise((resolve, reject) => {
 
+        if (cachedData) {
+            console.log("Returning data from cache..."); 
+            return resolve(cachedData);
+        }
+
         https.get('https://restcountries.com/v3.1/all', (res) => {
             let data = '';
             res.on('data', (chunk)=>{
