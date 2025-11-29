@@ -16,7 +16,10 @@ const getCountries = async (req, res, urlParams) => {
     // Filter Population greater than X 
     const minPopParam = urlParams.get('min_pop');
     if (minPopParam) {
-      countries = countries.filter(c => c.population >= parseInt(minPopParam));
+        const minPop = parseInt(minPopParam);
+        if (!isNaN(minPop)) {
+            countries = countries.filter(c => c.population >= minPop);
+        }
     }
 
     const sortField = urlParams.get('sort');
