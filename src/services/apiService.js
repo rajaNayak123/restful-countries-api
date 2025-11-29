@@ -1,12 +1,10 @@
-import http from 'http';
+import https from 'https'; 
 
 let cachedData = null;
 const fetchCountries = () => {
     return new Promise((resolve, reject) => {
 
-        if(cachedData) return resolve(cachedData);
-
-        http.get('https://restcountries.com/v3.1/all', (_, res)=>{
+        https.get('https://restcountries.com/v3.1/all', (res) => {
             let data = '';
             res.on('data', (chunk)=>{
                 data += chunk;
